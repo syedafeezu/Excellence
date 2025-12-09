@@ -1,22 +1,24 @@
 tasks = []
 c=0
 while(c != 4):
-    print("1. Add Task")
-    print("2. View Tasks")
-    print("3. Delete Task")
-    print("4. Exit")
-    c=int(input("Enter your choice: "))
+    print("\n=====TODO LIST MENU=====")
+    print("\t1. Add Task")
+    print("\t2. View Tasks")
+    print("\t3. Delete Task")
+    print("\t4. Exit")
+    c=int(input("Enter your choice : "))
     if(c==1):
-        task=input("Enter Task:")
+        task=input("Enter Task : ")
         tasks.append(task)
         print("Task Added")
     elif(c==2):
+        print("Your Tasks :")
         for i in range(len(tasks)):
-            print(f"{i+1}. {tasks[i+1]}")
+            print(f"{i+1}. {tasks[i]}")
     elif(c==3):
         for i in range(len(tasks)):
-            print(f"{i+1}. {tasks[i+1]}")
-        d=int(input("Enter task number to delete"))
+            print(f"{i+1}. {tasks[i]}")
+        d=int(input("Enter task number to delete : "))
         tasks.remove(tasks[d-1])
         print("Task Deleted")
     elif(c==4):

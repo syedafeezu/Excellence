@@ -19,8 +19,12 @@ while(c != 4):
         for i in range(len(tasks)):
             print(f"{i+1}. {tasks[i]}")
         d=int(input("Enter task number to delete : "))
-        tasks.remove(tasks[d-1])
-        print("Task Deleted")
+        # tasks.remove(tasks[d-1])
+        # print("Task Deleted")
+        if (d>=1 and d<=len(tasks)) :
+            tasks[d-1].pop()
+        else:
+            print("Enter a Valid Number !")
     elif(c==4):
         print("Thank You!")
         break

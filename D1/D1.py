@@ -1,5 +1,5 @@
 name=input("Enter your name: ")
 age=int(input("Enter your age: "))
-f=open("D1_output.txt","a")
-f.write(f"Hello, {name}! You'll be {age+5} in 5 years.")
-print(f"Hello, {name}! You'll be {age+5} in 5 years.")
+f=open("D1\D1_output.txt","a")
+f.write(f"\nHello, {name}! You'll be {age+5} in 5 years.")
+print(f"Hellfo, {name}! You'll be {age+5} in 5 years.")

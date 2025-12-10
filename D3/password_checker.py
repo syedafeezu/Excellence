@@ -9,7 +9,7 @@ def check_password(password):
         score += 1
     if any(c.isdigit() for c in password):
         score += 1
-    if any(c in '! @ # $ % ^ & * ( ) - _ = + [ ] { } ; : , . / ?' for c in password):
+    if any(c in '! @ # $ % ^ & * ( ) - _ = + [ ] { } ; : , . / ? ~' for c in password):
         score += 1
 
     if 0<=score<=2:

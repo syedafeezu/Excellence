@@ -1,12 +1,16 @@
 import json
 
 def load_data():
-    with open('D4\expenses.json', 'r') as file:
-        exp = file.read()
-        return json.loads(exp)
+    try:
+        with open(r'D4/expenses.json', 'r') as file: # D4\expenses.json breaks in linux! So use raw string!
+            exp = file.read()
+            return json.loads(exp)
+    except (FileNotFoundError, json.JSONDecodeError): # Forgot to handle JSONDecodeError earlier
+        return []
+    
     
 def save_data(data):
-    with open('D4\expenses.json', 'w') as file:
+    with open(r'D4/expenses.json', 'w') as file:
         return json.dump(data,file,indent=4)
 
 def add_expense(data):

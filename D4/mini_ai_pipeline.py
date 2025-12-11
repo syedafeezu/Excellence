@@ -1,7 +1,10 @@
 from utility import *
+import string
 
 def preprocess(text):
     words = text.lower().strip()
+    for p in string.punctuation:        # improvement From Ai
+        words = words.replace(p, "")    # remove punctuation
     return words
     
 def intent_detect(text):

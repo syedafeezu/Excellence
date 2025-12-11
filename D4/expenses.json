@@ -1,10 +1,10 @@
 [
     {
-        "item": "Food",
+        "Item": "Food",
         "Amount": 120
     },
     {
-        "item": "Bus",
+        "Item": "Bus",
         "Amount": 42
     },
     {

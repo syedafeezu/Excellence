@@ -1,9 +1,10 @@
 def get_marks():
     marks=[]
     n = int(input("Enter the Number of Subjects : "))
+    i=0
     while(i!=n):
         try:
-            m = int(input(f"Enter the mark for Subject {i} : "))
+            m = int(input(f"Enter the mark for Subject {i+1} : "))
             if m<0 or m>100:
                 raise ValueError 
         except ValueError:
@@ -11,11 +12,11 @@ def get_marks():
         else:
             marks.append(m)
             i+=1
-    return "Retreival Done"
+    return marks
 def calculate_average(marks):
     tot=0
-    for i in range(marks):
-        tot+=marks[i]
+    for i in marks:
+        tot+=i
     avg = tot/len(marks)
     return avg
 
@@ -31,11 +32,12 @@ def find_grade(avg):
     else:
         return 'F'
 def main():
+    print("=====Grade Analyzer=====")
     marks=get_marks()
     avg=calculate_average(marks)
     grade=find_grade(avg)
     
-    print("The Average is ",avg)
-    print("The Grade is ",grade)
+    print("The Average is",avg)
+    print("The Grade is",grade)
     
 main()

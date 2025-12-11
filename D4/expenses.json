@@ -1,0 +1,18 @@
+[
+    {
+        "item": "Food",
+        "Amount": 120
+    },
+    {
+        "item": "Bus",
+        "Amount": 42
+    },
+    {
+        "Item": "yamaha",
+        "Amount": 23
+    },
+    {
+        "Item": "ehf",
+        "Amount": 34
+    }
+]

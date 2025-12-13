@@ -7,7 +7,7 @@ def dot_product(a, b):
     dot=0
     for i in range(len(a)):
         dot+=a[i]*b[i]
-        return dot
+    return dot
 def vector_add(a, b):
     c=[]
     for i in range(len(a)):

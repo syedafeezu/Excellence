@@ -16,7 +16,7 @@ def selection_sort(arr):
             min=i
             if arr[i]>arr[j]:
                 min=j
-                arr[i],arr[min]=arr[min],arr[i]
+        arr[i],arr[min]=arr[min],arr[i]
         print(arr)
         
 def get_values():

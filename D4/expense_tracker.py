@@ -2,7 +2,7 @@ import json
 
 def load_data():
     try:
-        with open(r'D4/expenses.json', 'r') as file: # D4\expenses.json breaks in linux! So use raw string!
+        with open(r'D4/expenses.json', 'r') as file: # D4\expenses.json breaks in linux! So Im using raw string!
             exp = file.read()
             return json.loads(exp)
     except (FileNotFoundError, json.JSONDecodeError): # Forgot to handle JSONDecodeError earlier

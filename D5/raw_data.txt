@@ -1,0 +1,5 @@
+Name, Age, Score
+syed , 19 ,  88
+  ARUN,21,  92  
+megha , , 75
+  , 22 , 81

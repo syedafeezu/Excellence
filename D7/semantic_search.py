@@ -40,9 +40,11 @@ def similarity(text_vec,docs_vec):
     for name,vec in docs_vec.items():
         sim[name]=cosine_similarity(text_vec,vec)
     return sim
+
 def sim_rank(similarity_list):
-     top_k = sorted()
-    
+    top_k = sorted(similarity_list.items(), key=lambda x: x[1], reverse=True)
+    return top_k
+
 def main():
     query=input("Enter the Query : ")
     processed_txt=preprocess_text(query)

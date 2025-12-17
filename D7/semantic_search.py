@@ -24,19 +24,19 @@ def dot(a, b):
         dot+=a[i]*b[i]
     return dot
     
-def magnitude(a):
+def magnitude(vec):
     sum=0
-    for i in range(len(a)):
-        sum += a[i]**2
+    for i in range(len(vec)): # sqrt(a^2 + b^2 + c^2)
+        sum += vec[i]**2
     mag=sqrt(sum)
     return mag
 
-def cosine_similarity(a, b):
-    cos=dot(a,b)/(magnitude(a)*magnitude(b))
-    return cos
+def cosine_similarity(vec_a, vec_b):
+    cos=dot(vec_a,vec_b)/(magnitude(vec_a)*magnitude(vec_b)) # Formula for Cosine angle btwn Vectors
+    return cos # measure the Closeness between the vecs not the Heights of vec
 
 def preprocess_text(text):
-    return text.lower().split()
+    return text.lower().split() #Spliting the string into words
 
 def find_avg(words,embeddings):  # Passing list of words and embeddings to find avg vector of known words
     known=[]
@@ -47,7 +47,7 @@ def find_avg(words,embeddings):  # Passing list of words and embeddings to find 
         return 'Unknown'
     x,y,z=0,0,0
     for word in known:
-        x+=embeddings[word][0] #Getting the x,y,z components of each known word vector from embeddings
+        x+=embeddings[word][0] #Getting the x,y,z components of all known word vector from embeddings
         y+=embeddings[word][1]
         z+=embeddings[word][2]
     n=len(known)
@@ -59,34 +59,34 @@ and then compare that with the avg of words from the query
 and i'll keep track of ranks of docs
     and return the most similar one '''
     
-def get_docs_avg():
+def get_docs_avg(): # Getting avg vectors of all documents
     avg_docs={}
     for name,text in documents.items():
         avg_vec = find_avg(text.split(), word_vectors) #Splitting the document text into words and passing to find_avg function 
         avg_docs[name] = avg_vec
-    return avg_docs  
+    return avg_docs  #returning a dictionary of document names and their avg vectors
 
-def similarity(text_vec,docs_vec):
+def similarity(text_vec,docs_vec): # Getting similarity scores of query vector with all document vectors
     sim={}
-    for name,vec in docs_vec.items():
-        sim[name]=cosine_similarity(text_vec,vec)
-    return sim
+    for name,doc_vec in docs_vec.items():
+        sim[name]=cosine_similarity(text_vec,doc_vec)
+    return sim #Returning a dictionary of document names and their similarity scores with the query
 
-def sim_rank(similarity_list):
+def sim_rank(similarity_list):# Getting the top 2 similar documents based on similarity scores
     top_k={}
-    for  doc,score in sorted(similarity_list.items(), key=lambda x: x[1], reverse=True)[:2]:
-        top_k[doc]=score
-    return top_k
+    for  doc,score in sorted(similarity_list.items(), key=lambda x: x[1], reverse=True)[:2]: #Sorting the similarity scores in descending order and getting top 2 documents
+        top_k[doc]=score # lambda function to sort based on similarity scores if we put x[0] it will sort based on document names but we want based on scores!
+    return top_k #returns Dict of top 2
 
 def main():
     query=input("Enter the Query : ") #Getting the Query from User
     processed_txt=preprocess_text(query) # Preprocessing the Query(String to list of words)
     query_avg_vector=find_avg(processed_txt, word_vectors) # Getting the vectors of known words and then avg vector of the query
     docs_avg= get_docs_avg() # Getting avg vectors of all documents
-    similarity_list=similarity(query_avg_vector,docs_avg) 
-    sim_rank_list=sim_rank(similarity_list)
+    similarity_list=similarity(query_avg_vector,docs_avg) #Passing the query avg vec and dict of doc avg vecs to get similarity scores
+    sim_rank_list=sim_rank(similarity_list) #Getting the top 2 similar documents based on similarity scores
     print("Ranked Documents based on Similarity : ")
-    for doc,score in sim_rank_list.items():
+    for doc,score in sim_rank_list.items(): #Printing the ranked documents with similarity scores
         print(f"{doc} : ({score})")
         
 main()

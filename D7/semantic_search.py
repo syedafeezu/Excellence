@@ -10,7 +10,7 @@ word_vectors = {
   "ai": [1, 0, 0],
   "machine": [0.9, 0.1, 0],
   "learning": [0.8, 0.2, 0],
-  "robot": [0, 1, 0],
+  "robots": [0, 1, 0],
   "space": [0, 0, 1],
   "deep" : [0.82, 0.24, 0.67],
   "automation": [0.71, 0.88, 0.30],

@@ -44,7 +44,7 @@ def find_avg(words,embeddings):  # Passing list of words and embeddings to find 
         if word in embeddings:
             known.append(word)
     if len(known)==0:
-        return 'Unknown'
+        return None
     x,y,z=0,0,0
     for word in known:
         x+=embeddings[word][0] #Getting the x,y,z components of all known word vector from embeddings
@@ -69,7 +69,8 @@ def get_docs_avg(): # Getting avg vectors of all documents
 def similarity(text_vec,docs_vec): # Getting similarity scores of query vector with all document vectors
     sim={}
     for name,doc_vec in docs_vec.items():
-        sim[name]=cosine_similarity(text_vec,doc_vec)
+        if text_vec is not None and doc_vec is not None:
+            sim[name]=cosine_similarity(text_vec,doc_vec)
     return sim #Returning a dictionary of document names and their similarity scores with the query
 
 def sim_rank(similarity_list):# Getting the top 2 similar documents based on similarity scores
@@ -86,7 +87,11 @@ def main():
     similarity_list=similarity(query_avg_vector,docs_avg) #Passing the query avg vec and dict of doc avg vecs to get similarity scores
     sim_rank_list=sim_rank(similarity_list) #Getting the top 2 similar documents based on similarity scores
     print("Ranked Documents based on Similarity : ")
-    for doc,score in sim_rank_list.items(): #Printing the ranked documents with similarity scores
-        print(f"{doc} : ({score})")
+    if len(sim_rank_list)==0:
+        print("No Relevant Documents Found")
+    else:
+        print("Relevant Docs: ")
+        for doc,score in sim_rank_list.items(): #Printing the ranked documents with similarity scores
+            print(f"{doc} : ({score})")
         
 main()
